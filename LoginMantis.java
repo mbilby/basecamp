@@ -23,7 +23,7 @@ public class LoginMantis {
 
     @After
     public void finalizar() {
-       //driver.quit();
+       driver.quit();
     }
 
     @Test
@@ -69,8 +69,18 @@ public class LoginMantis {
         linkLogout.click();
         WebElement usernameText = driver.findElement(By.xpath("//td[@class='category']"));
         Assert.assertEquals("Username", usernameText.getText());
+    }
 
-
+    @Test
+    public void viewIssues() {
+        correctPage();
+        loginSucess();
+        WebElement linkViewIssues = driver.findElement(By.linkText("View Issues"));
+        linkViewIssues.click();
+        WebElement linkIdIssues = driver.findElement(By.linkText("0009523"));
+        linkIdIssues.click();
+        WebElement issuesId = driver.findElement(By.xpath("//td[text() = '0009523']"));
+        Assert.assertEquals("0009523", issuesId.getText());
     }
 
 
